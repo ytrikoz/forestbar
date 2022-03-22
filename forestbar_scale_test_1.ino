@@ -1,3 +1,4 @@
+//2022
 //31 october 2015 
 // added clean command reverse 5 second
 // added wtc - Water Clean command 10 second each
@@ -190,14 +191,27 @@ void serialEvent() {
       Serial.println(so);//display value of integer i   
     delay (10000);
     digitalWrite(GetIdByCmd(arr[x]), RELAY_OFF);
-    delay (500);
+    delay (100);
+        ////2022.1
+            digitalWrite(18, RELAY_ON);
+            digitalWrite(19, RELAY_ON);
+            delay (50);
+            digitalWrite(GetIdByCmd(arr[x]), RELAY_ON);
+            delay (1500);
+            digitalWrite(GetIdByCmd(arr[x]), RELAY_OFF);
+            delay (50);
+            digitalWrite(18, RELAY_OFF);
+            digitalWrite(19, RELAY_OFF);
+            delay (50);
+        ////2022.1
+
       Serial.print("\t relay is off , pin = ");
       Serial.println(so);//display value of integer i
   }
       inputString = "";
       goto drom;
 }
-
+///drink
       inputString = inputString.substring(0, inputString.length() - 1); //cut last 1 char #
       inputString.remove(0, 1); //cut first 1 char ^
       inputString = (inputString + ",");
@@ -290,6 +304,20 @@ void sex(int data1, String data)
         if (bre < data2){
         for (int x = 0; x < number_of_relays; x++) {
             digitalWrite(GetIdByCmd(arr[x]), RELAY_OFF);
+            ////2022.1
+            delay (50);
+            digitalWrite(18, RELAY_ON);
+            digitalWrite(19, RELAY_ON);
+            delay (50);
+            digitalWrite(GetIdByCmd(arr[x]), RELAY_ON);
+            delay (1500);
+            digitalWrite(GetIdByCmd(arr[x]), RELAY_OFF);
+            delay (50);
+            digitalWrite(18, RELAY_OFF);
+            digitalWrite(19, RELAY_OFF);
+            delay (50);
+            ////2022.1
+
             digitalWrite(ledPin, LOW);
           }
           done = true;
@@ -306,6 +334,20 @@ void sex(int data1, String data)
     //if ((cal1 >= ((float)data1)) && (done == false)) //mod 2021
     if ( ( (cal1  >= (float)data1)) && (done == false)) { //start if (liquid is enough)
       digitalWrite(GetIdByCmd(data), RELAY_OFF);
+            ////2022.1
+            delay (50);
+            digitalWrite(18, RELAY_ON);
+            digitalWrite(19, RELAY_ON);
+            delay (50);
+            digitalWrite(GetIdByCmd(data), RELAY_ON);
+            delay (1500);
+            digitalWrite(GetIdByCmd(data), RELAY_OFF);
+            delay (50);
+            digitalWrite(18, RELAY_OFF);
+            digitalWrite(19, RELAY_OFF);
+            delay (50);
+            ////2022.1
+      
       digitalWrite(ledPin, LOW);
       done = true;
       break;
